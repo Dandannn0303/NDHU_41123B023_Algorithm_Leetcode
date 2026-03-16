@@ -15,13 +15,13 @@ public:
         ListNode* fast=head;
         ListNode* slow=head;
         ListNode *prev=nullptr;
-        while(fast&&fast->next)
+        while(fast!=nullptr&&fast->next!=nullptr)
         {
-            prev=slow;
-            slow=slow->next;
-            fast=fast->next->next;
+            prev=slow;//找slow的點 
+            slow=slow->next;//一次跨一個
+            fast=fast->next->next;//一次跨兩個
         }
-        prev->next=nullptr;//加了一條NULL進去
+        prev->next=nullptr;//加了一條NULL進去代表中點
         ListNode *left=sortList(head);//是從head開始排序排到prev指的NULL
         ListNode *right=sortList(slow);
         return merge(left,right);
